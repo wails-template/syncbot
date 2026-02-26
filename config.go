@@ -2,6 +2,7 @@ package main
 
 import "os"
 
+// should change to the bot
 const (
 	GH_USERNAME = "2nthony"
 	GH_EMAIL    = "hi@2nthony.com"
