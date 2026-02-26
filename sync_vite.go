@@ -23,7 +23,11 @@ func SyncVite() {
 	}
 	defer os.RemoveAll(viteDir)
 
-	viteRepo := NewRepository(viteDir, VITE_REPO_URL)
+	viteRepo, err := NewRepository(viteDir, VITE_REPO_URL)
+	if err != nil {
+		fmt.Println(err)
+		return
+	}
 	viteRepo.Clone()
 	if err != nil {
 		fmt.Println(err)
@@ -45,7 +49,11 @@ func SyncVite() {
 		templateRepoUrl := TARGET_ORG_URL + "/" + strings.ReplaceAll(templateName, "template", "vite")
 
 		fmt.Println("Current repo:", templateRepoUrl)
-		templateRepo := NewRepository(templateDir, templateRepoUrl)
+		templateRepo, err := NewRepository(templateDir, templateRepoUrl)
+		if err != nil {
+			fmt.Println(err)
+			continue
+		}
 
 		// clone
 		err = templateRepo.Clone()

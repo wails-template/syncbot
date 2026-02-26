@@ -11,7 +11,7 @@ import (
 
 var auth = &http.BasicAuth{
 	Username: GH_USERNAME,
-	Password: GH_TOKEN,
+	Password: GITHUB_TOKEN,
 }
 
 type Repository struct {
@@ -20,11 +20,15 @@ type Repository struct {
 	dest string
 }
 
-func NewRepository(dest string, url string) *Repository {
+func NewRepository(dest string, url string) (*Repository, error) {
+	if GITHUB_TOKEN == "" {
+		return nil, fmt.Errorf("env.GITHUB_TOKEN is not set, exit.")
+	}
+
 	return &Repository{
 		url:  url,
 		dest: dest,
-	}
+	}, nil
 }
 
 func (r *Repository) Clone() error {
