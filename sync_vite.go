@@ -22,6 +22,7 @@ func SyncVite() error {
 	}
 	defer os.RemoveAll(viteDir)
 
+	fmt.Println("Current repo:", VITE_REPO_URL)
 	viteRepo, err := NewRepository(viteDir, VITE_REPO_URL)
 	if err != nil {
 		return err
