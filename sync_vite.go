@@ -140,6 +140,7 @@ func SyncVite() {
 			continue
 		}
 
+		fmt.Println("Done!")
 		fmt.Println("")
 	}
 }
