@@ -36,12 +36,6 @@ func SyncVite() {
 
 	viteTemplateDir := filepath.Join(viteDir, VITE_TEMPLATES_PATH)
 	viteTemplateNames, _ := doublestar.Glob(os.DirFS(viteTemplateDir), "template-*")
-	// ci test
-	viteTemplateNames = []string{
-		"template-react", "template-react-ts",
-		"template-vue", "template-vue-ts",
-		"template-preact",
-	}
 
 	// TODO: use goroutines
 	for _, templateName := range viteTemplateNames {
