@@ -7,6 +7,6 @@ const (
 	GH_EMAIL    = "hi@2nthony.com"
 )
 
-var GITHUB_TOKEN = os.Getenv("GITHUB_TOKEN")
+var GH_TOKEN = os.Getenv("GH_TOKEN")
 
 const TARGET_ORG_URL = "https://github.com/wails-template"
