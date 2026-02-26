@@ -15,27 +15,27 @@ const (
 	VITE_TEMPLATES_PATH = "packages/create-vite"
 )
 
-func SyncVite() {
+func SyncVite() error {
 	viteDir, err := os.MkdirTemp("", "vite")
 	if err != nil {
-		fmt.Println(err)
-		return
+		return err
 	}
 	defer os.RemoveAll(viteDir)
 
 	viteRepo, err := NewRepository(viteDir, VITE_REPO_URL)
 	if err != nil {
-		fmt.Println(err)
-		return
+		return err
 	}
-	viteRepo.Clone()
+	err = viteRepo.Clone()
 	if err != nil {
-		fmt.Println(err)
-		return
+		return err
 	}
 
 	viteTemplateDir := filepath.Join(viteDir, VITE_TEMPLATES_PATH)
 	viteTemplateNames, _ := doublestar.Glob(os.DirFS(viteTemplateDir), "template-*")
+	if len(viteTemplateNames) == 0 {
+		return ErrNoTemplatesFound
+	}
 
 	// TODO: use goroutines
 	for _, templateName := range viteTemplateNames {
@@ -137,4 +137,6 @@ func SyncVite() {
 		fmt.Println("Done!")
 		fmt.Println("")
 	}
+
+	return nil
 }
