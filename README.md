@@ -1,6 +1,6 @@
 # wails-template/syncbot
 
-A sync bot to sync vite templates for wails.
+A sync bot to sync templates for wails in every Sunday 22:00 PM.
 
 You can see all templates in [repositories](https://github.com/orgs/wails-template/repositories).
 
