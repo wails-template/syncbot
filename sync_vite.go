@@ -110,7 +110,7 @@ func SyncVite() error {
 			continue
 		}
 		if status.IsClean() {
-			fmt.Println("Skip, nothing changed\n")
+			fmt.Println("Skip, nothing changed")
 			continue
 		}
 
